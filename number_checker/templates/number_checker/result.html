@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Результат проверки{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h2>Информация о номере</h2>
+        
+        <table class="table table-bordered">
+            <tr>
+                <th>Номер:</th>
+                <td>+7{{ phone.code }}{{ phone.num }}</td>
+            </tr>
+            <tr>
+                <th>Оператор:</th>
+                <td>{{ phone.operator }}</td>
+            </tr>
+            {% if phone.old_operator %}
+            <tr>
+                <th>Прежний оператор:</th>
+                <td>{{ phone.old_operator }}</td>
+            </tr>
+            {% endif %}
+            <tr>
+                <th>Регион:</th>
+                <td>{{ phone.region }}</td>
+            </tr>
+        </table>
+        
+        {% if history %}
+        <h3 class="mt-5">История запросов</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Дата</th>
+                    <th>Пользователь</th>
+                    <th>IP</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in history %}
+                <tr>
+                    <td>{{ item.query_date|date:"d.m.Y H:i" }}</td>
+                    <td>{{ item.user|default:"Аноним" }}</td>
+                    <td>{{ item.ip_address }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

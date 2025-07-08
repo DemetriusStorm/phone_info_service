@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}История запросов{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">История ваших запросов</h2>
+
+{% if history %}
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Дата</th>
+                <th>Номер</th>
+                <th>Оператор</th>
+                <th>Регион</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in history %}
+            <tr>
+                <td>{{ item.query_date|date:"d.m.Y H:i" }}</td>
+                <td><a href="{% url 'check_phone' %}?phone={{ item.phone_number.full_num }}">+7{{ item.phone_number.code }}{{ item.phone_number.num }}</a></td>
+                <td>{{ item.phone_number.operator }}</td>
+                <td>{{ item.phone_number.region }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="alert alert-info">У вас пока нет истории запросов</div>
+{% endif %}
+{% endblock %}
