@@ -23,11 +23,17 @@ class PhoneInfoService:
         """
         Базовый метод для выполнения HTTP-запроса к API
         """
+        proxies = {
+            "http": "http://193.148.58.42:3128",
+            "https": "http://193.148.58.42:3128"
+        }
+    
         try:
             response = requests.get(
                 cls.BASE_URL,
                 params=params,
-                timeout=10
+                timeout=10,
+                proxies=proxies,
             )
             response.raise_for_status()
             

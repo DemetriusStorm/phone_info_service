@@ -6,14 +6,12 @@ authors = [
     {name = "Dmitriy Bulygin",email = "demetrius.storm@gmail.com"}
 ]
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.8"
 dependencies = [
-    "django (>=5.2.4,<6.0.0)",
-    "psycopg2-binary (>=2.9.10,<3.0.0)",
-    "redis (>=6.2.0,<7.0.0)",
-    "celery (>=5.5.3,<6.0.0)",
-    "python-dotenv (>=1.1.1,<2.0.0)",
-    "requests (>=2.32.4,<3.0.0)"
+    "django (>=4.0,<6.0.0)",
+    "requests (>=2.32.4,<3.0.0)",
+    "python-decouple (==3.8)",
+    "dotenv (>=0.9.9,<0.10.0)"
 ]
 
 [tool.poetry]
